@@ -1,6 +1,3 @@
-[submodule "MSc-Thesis/previous-work"]
-	path = MSc-Thesis/previous-work
-	url = https://github.com/jbaonl/Thesis-Brent.git
 [submodule "MSc-Thesis/previous-work-jonathan"]
 	path = MSc-Thesis/previous-work-jonathan
 	url = https://github.com/jbaonl/Thesis-Jonathan.git
