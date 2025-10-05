@@ -1,0 +1,12 @@
+[submodule "MSc-Thesis/previous-work"]
+	path = MSc-Thesis/previous-work
+	url = https://github.com/jbaonl/Thesis-Brent.git
+[submodule "MSc-Thesis/previous-work-jonathan"]
+	path = MSc-Thesis/previous-work-jonathan
+	url = https://github.com/jbaonl/Thesis-Jonathan.git
+[submodule "MSc-Thesis/previous-work-merel"]
+	path = MSc-Thesis/previous-work-merel
+	url = https://github.com/jbaonl/Thesis-Merel.git
+[submodule "MSc-Thesis/previous-work-brent"]
+	path = MSc-Thesis/previous-work-brent
+	url = https://github.com/jbaonl/Thesis-Brent.git
