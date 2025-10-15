@@ -1,0 +1,7 @@
+.venv/
+
+MSc-Thesis/Bao/downloads/
+
+MSc-Thesis/Bao/.ipynb_checkpoints/
+
+*.zip
