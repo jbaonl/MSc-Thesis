@@ -5,3 +5,11 @@ MSc-Thesis/Bao/downloads/
 MSc-Thesis/Bao/.ipynb_checkpoints/
 
 *.zip
+
+MSc-Thesis/Bao/testing_ignore
+
+MSc-Thesis/Bao/.cache.sqlite
+
+MSc-Thesis/Bao/.env
+
+*.env
