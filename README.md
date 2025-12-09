@@ -1,4 +1,13 @@
 # MSc-Thesis
-Setting up github for thesis code
 
-Step 1. Run download_data.ipynb once to download the corresponding NS dataset
+This repository contains the code for the thesis. Instructions and a brief overview is given in this README.
+
+Please refer to [MSc-Thesis/Bao](MSc-Thesis/Bao) for the main thesis repo.
+
+Setting up:
+NOTES: 
+- an open-meteo API key is preferred to run the download_data.ipynb notebook which can be acquired by [mailing the open-meteo repo owners](https://github.com/open-meteo/open-meteo?tab=readme-ov-file#support).
+- file may need to be adjusted, please change the paths accordingly on your machine.
+
+Step 1. Run download_data.ipynb notebook once to download the corresponding datasets
+Step 2. ...
