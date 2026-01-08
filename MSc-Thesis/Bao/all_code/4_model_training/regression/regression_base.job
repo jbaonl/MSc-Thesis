@@ -1,0 +1,34 @@
+#!/bin/bash
+#SBATCH --job-name=regression-base
+#SBATCH --output=logs/output_%j.log
+#SBATCH --error=logs/error_%j.err
+#SBATCH --partition=gpu_a100
+#SBATCH --gres=gpu:4
+#SBATCH --time=04:00:00
+#SBATCH --mem=64G
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=jialong.bao@student.uva.nl
+
+module purge
+module load 2025
+pip install -r requirements.txt
+
+# In your Slurm script
+# 1. Copy the folder to scratch
+cp -r $HOME/NS_Thesis/data/filtered/full_dataset_partitioned $TMPDIR/
+
+cd $TMPDIR
+
+# 2. Run your code
+# Note: The folder is now at $TMPDIR/full_dataset_partitioned
+srun python $HOME/NS_Thesis/code/regression/thesis_baselines.py --data_dir $TMPDIR/full_dataset_partitioned
+
+# 3. Create a folder in your home to store them (if it doesn't exist)
+mkdir -p $HOME/NS_Thesis/models/
+mkdir -p $HOME/NS_Thesis/results/
+
+# 3. Copy the models back
+# This grabs all .pkl files from scratch and moves them to your home
+cp *.pkl $HOME/NS_Thesis/models/
+# Copy all CSVs from scratch to home
+cp *.csv $HOME/NS_Thesis/results/
