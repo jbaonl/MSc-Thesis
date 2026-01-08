@@ -45,9 +45,10 @@ df_val = duckdb.query(f"SELECT * FROM '{base_path}/data_val.parquet'").to_df()
 df_test = duckdb.query(f"SELECT * FROM '{base_path}/data_test.parquet'").to_df()
 
 # Inspect the data to ensure it loaded correctly
-print("Train shape:", df_train.shape)
-print(df_train.head())
+# print("Train shape:", df_train.shape)
+# print(df_train.head())
 
+# Combine Train and Validation sets for training the baseline models, which doesn't require a separate validation set
 query = f"""
 SELECT * FROM '{base_path}/data_train.parquet'
 UNION ALL
@@ -119,12 +120,12 @@ df_aggregated = df_train.groupby('hour_bin')['avg_delay_minutes'].sum().reset_in
 # Create a TimeSeries from the aggregated DataFrame
 total_delay_series = TimeSeries.from_dataframe(df_aggregated, time_col='hour_bin', value_cols='avg_delay_minutes')
 
-# Plot the aggregated delay
-total_delay_series.plot();
-plt.title("Total Avg Delay (Minutes) Over Time of NS trains")
-plt.xlabel("Date")
-plt.ylabel("Total Avg Delay (Minutes)")
-plt.show()
+# # Plot the aggregated delay
+# total_delay_series.plot();
+# plt.title("Total Avg Delay (Minutes) Over Time of NS trains")
+# plt.xlabel("Date")
+# plt.ylabel("Total Avg Delay (Minutes)")
+# plt.show()
 
 """We see slight upward trend and a seasonality. In addition there's seem to be two somewhat concentrated peaks each year. There is also an outlier peak near Q3 2021, after further investigation we concluded that this might be covid related (https://2022.nsjaarverslag.nl/jaarverslag-2021/over-ns/ns-en-corona-in-2021)
 
