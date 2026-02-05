@@ -1,0 +1,37 @@
+name: my_research_env
+channels:
+  # - defaults
+  
+  # additional channels for specific packages
+  - pyg
+  - pytorch
+  - nvidia
+
+  # Default
+  - conda-forge
+
+dependencies:
+  # - python=3.11
+  - python=3.10
+
+  # Core packages
+  - pandas
+  - duckdb 
+  - numpy
+  - scikit-learn
+
+  # PyTorch + CUDA (H100)
+  - pytorch=2.2.*
+  - pytorch-cuda=12.1
+
+  # - pytorch
+  # - u8darts-all
+  - pyg
+
+  - nbconvert
+  - jupyter
+
+  - pip
+  # - pip:
+  #   - darts==0.39.0
+  

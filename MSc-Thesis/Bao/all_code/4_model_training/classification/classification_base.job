@@ -23,14 +23,14 @@ cp -r $HOME/NS_Thesis/data/filtered/full_dataset_partitioned $TMPDIR/
 # 2. Activate conda environment 
 source activate my_research_env
 
-# # 3. Verify DuckDB is accessible (Optional debugging step)
-# python -c "import duckdb; print(f'DuckDB version: {duckdb.__version__}')"
-# # 3. Verify DuckDB is accessible (Optional debugging step)
-# python -c "import darts; print(f'Darts version: {darts.__version__}')"
+# 3. Verify DuckDB is accessible (Optional debugging step)
+python -c "import duckdb; print(f'DuckDB version: {duckdb.__version__}')"
+# 3. Verify DuckDB is accessible (Optional debugging step)
+python -c "import darts; print(f'Darts version: {darts.__version__}')"
 
-# 2. Run your code
+# 2. Run your code, 
 # Note: The folder is now at $TMPDIR/full_dataset_partitioned
-srun python $HOME/NS_Thesis/code/regression/regression_baselines.py --data_dir $TMPDIR/full_dataset_partitioned
+srun python $HOME/NS_Thesis/code/classification/classification_baselines.py --data_dir $TMPDIR/full_dataset_partitioned
 
 # 3. Create a folder in your home to store them (if it doesn't exist)
 mkdir -p $HOME/NS_Thesis/models/

@@ -3,7 +3,7 @@
 Jia Long Bao (12593400)
 MSc Information Studies: Data Science
 
-Baselines currently have the regression task predictiong avg delay minutes per station, but might pivot to binary classification to align with prior work
+Baselines currently have the regression task predictiong avg delay minutes per station dataset, but might pivot to binary classification to align with prior work
 """
 
 # 1. Install necessary libraries
@@ -21,15 +21,21 @@ First, let's import the necessities
 # Commented out IPython magic to ensure Python compatibility.
 # %matplotlib inline
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+
 import numpy as np
 import pandas as pd
-
+import os 
+import duckdb
 from darts import TimeSeries
 from darts.utils.statistics import check_seasonality, extract_trend_and_seasonality, stationarity_test_kpss, plot_acf, plot_residuals_analysis
-import duckdb
+
 
 import argparse
+
+from xgboost import XGBModel
+
+from xgboost import XGBModel
 
 # Define the base path
 # base_path = '/gpfs/home2/jbao/NS_Thesis/data/filtered/full_dataset_partitioned'
@@ -42,6 +48,16 @@ args = parser.parse_args()
 base_path = args.data_dir
 
 print(f"Loading data from: {base_path}", flush=True)
+
+# Retrieve the temp path provided by SLURM/Bash
+
+temp_dir = os.environ.get("DUCKDB_TMP", ".")
+
+# Connect with the explicit temp_directory configuration
+con = duckdb.connect(config={'temp_directory': temp_dir})
+
+print(f"DuckDB is using temp storage at: {temp_dir}")
+
 # Load Train and Validation data using DuckDB
 # We select all columns (*) from the parquet files and convert immediately to a Pandas DataFrame
 # df_train = duckdb.query(f"SELECT * FROM '{base_path}/dataset_group=train/data_0.parquet'").to_df()
@@ -70,6 +86,11 @@ df_test = df_test.drop(columns=cols_to_drop)
 
 df_train = df_train.drop(columns=cols_to_drop)
 
+
+# Bugfix snellius timezone issue with numpy datetime conversion
+# Convert timezone-aware to timezone-naive (local time)
+df_test['hour_bin'] = df_test['hour_bin'].dt.tz_localize(None)
+df_train['hour_bin'] = df_train['hour_bin'].dt.tz_localize(None)
 """## Preprocessing
 
 ### Creating timeseries object
@@ -201,10 +222,11 @@ future_cov_test_scaled = future_cov_scaler.transform(future_cov_test)
 We add builtin cyclic encoders, so we dont need to use the manual covariates for hour, dayofweek, month
 """
 
-from darts.models import GlobalNaiveSeasonal, XGBModel, LightGBMModel, GlobalNaiveSeasonal
+from darts.models import SKLearnClassifierModel, XGBClassifierModel, LightGBMClassifierModel, GlobalNaiveSeasonal
 
 forecasts = {}
 
+# Adjust seasonality period based on EDA
 seasonality_period = 24
 
 input_chunk_length = seasonality_period * 2
@@ -212,11 +234,11 @@ output_chunk_length = seasonality_period
 
 random_state = 8
 
-xgb_model = XGBModel(lags=seasonality_period, random_state = random_state)
-lgbm_model = LightGBMModel(lags=seasonality_period, random_state = random_state)
+xgb_model = XGBClassifierModel(lags=seasonality_period, random_state = random_state)
+lgbm_model = LightGBMClassifierModel(lags=seasonality_period, random_state = random_state)
 
 # 1. XGBoost with Covariates
-xgb_model = XGBModel(
+xgb_model = XGBClassifierModel(
     lags=seasonality_period,
     lags_past_covariates=seasonality_period,
     output_chunk_length=1,
@@ -227,7 +249,7 @@ xgb_model = XGBModel(
 )
 
 # 2. LightGBM with Covariates
-lgbm_model = LightGBMModel(
+lgbm_model = LightGBMClassifierModel(
     lags=seasonality_period,
     lags_past_covariates=seasonality_period,
     output_chunk_length=1,
@@ -244,7 +266,7 @@ pl_trainer_kwargs = {
     "precision": "32-true"  # Use standard 32-bit float
 }
 
-naive_model = GlobalNaiveSeasonal(input_chunk_length=input_chunk_length, output_chunk_length=output_chunk_length, pl_trainer_kwargs = pl_trainer_kwargs)
+naive_model = SKLearnClassifierModel(input_chunk_length=input_chunk_length, output_chunk_length=output_chunk_length, pl_trainer_kwargs = pl_trainer_kwargs)
 
 """TODO rerun on snellius"""
 # TODO: Future covariates require additional time series horizon in the dataset, which is missing from the test set (i.e. several days ahead), so we comment them out for now
@@ -268,9 +290,9 @@ lgbm_model.fit(series=series_train_scaled,
 
 # Save model
 print("Saving models...", flush=True)
-naive_model.save('naive_model.pkl')
-xgb_model.save('xgb_model.pkl')
-lgbm_model.save('lgbm_model.pkl')
+naive_model.save('c_naive_model.pkl')
+xgb_model.save('c_xgb_model.pkl')
+lgbm_model.save('c_lgbm_model.pkl')
 
 print("Predicting...", flush=True)
 """## Make Predictions"""
@@ -294,6 +316,7 @@ naive_results = pd.DataFrame()
 xgb_results = pd.DataFrame()
 lgbm_results = pd.DataFrame()    
 
+# TODO: Adjust to trajectory
 for i, ts in enumerate(series_test):
     station_code = ts.static_covariates['station_code']
 
@@ -314,11 +337,12 @@ for i, ts in enumerate(series_test):
         pd.DataFrame({'station_code': station_code, **{f"F{i+1}": val for i, val in enumerate(lgbm_values)}})
     ])
 
-naive_results.to_csv('regression_naive_results.csv', index=False)
-xgb_results.to_csv('regression_xgb_results.csv', index=False)
-lgbm_results.to_csv('regression_lgbm_results.csv', index=False)
+naive_results.to_csv('classification_naive_results.csv', index=False)
+xgb_results.to_csv('classification_xgb_results.csv', index=False)
+lgbm_results.to_csv('classification_lgbm_results.csv', index=False)
 
-from darts.metrics.metrics import rmse, mae, r2_score
+# from darts.metrics.metrics import rmse, mae, r2_score
+from darts.metrics.metrics import accuracy, mae, r2_score
 
 print("Calculating metrics...", flush=True)
 # Calculate metrics for each model
@@ -343,7 +367,7 @@ metrics_data = {
 print("Saving metrics...", flush=True)
 # Create a DataFrame for the metrics
 metrics_table = pd.DataFrame(metrics_data)
-metrics_table.to_csv('regression_metrics_table.csv', index=False)
+metrics_table.to_csv('classification_metrics_table.csv', index=False)
 # Display the metrics table
 metrics_table
 

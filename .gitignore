@@ -13,3 +13,14 @@ MSc-Thesis/Bao/.cache.sqlite
 MSc-Thesis/Bao/.env
 
 *.env
+
+MSc-Thesis/Bao/ns_data.duckdb
+MSc-Thesis/Bao/ns_data.duckdb.wal
+
+MSc-Thesis/previous-work-brent
+MSc-Thesis/previous-work-jonathan
+MSc-Thesis/previous-work-merel
+
+*.duckdb
+
+*.wal
