@@ -13,9 +13,9 @@ module load 2025
 module load Anaconda3/2025.06-1
 
 # conda env remove -n my_research_env || true
-conda env create -f code/regression/environment.yml
+conda env create -f code/snellius_scripts/environment.yml
 
 source activate my_research_env
 
 python -c "import duckdb; print(f'DuckDB version: {duckdb.__version__}')"
-python -c "import darts; print(f'Darts version: {darts.__version__}')"
+# python -c "import darts; print(f'Darts version: {darts.__version__}')"
