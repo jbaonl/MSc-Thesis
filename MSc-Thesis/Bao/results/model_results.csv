@@ -1,5 +1,4 @@
 Model,Balanced Accuracy,F1 Score,AUC-ROC,Best Params,Saved File
-HistGradientBoosting,0.6661754127370962,0.602675253901412,0.7316660136591386,"{'max_leaf_nodes': 64, 'max_iter': 300, 'max_depth': 7, 'learning_rate': 0.01, 'l2_regularization': 1.0}",HistGradientBoosting_best.pkl
-XGBoost,0.6603886691044891,0.5851517107811491,0.7337534343911296,"{'subsample': 0.8, 'scale_pos_weight': np.float64(1.3235371293623721), 'n_estimators': 300, 'max_depth': 7, 'learning_rate': 0.01, 'colsample_bytree': 1.0}",XGBoost_best.pkl
-Logistic_Regression,0.6583170922117138,0.6081490104772992,0.7310306329953424,"{'clf__solver': 'liblinear', 'clf__penalty': 'l2', 'clf__C': 100}",Logistic_Regression_best.pkl
-Random_Forest,0.6517107604034025,0.5621796601025087,0.7345807512688901,"{'n_estimators': 500, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 10, 'bootstrap': True}",Random_Forest_best.pkl
+XGBoost,0.6590127364128604,0.5791890827975331,0.7323435564265216,"{'subsample': 0.8, 'scale_pos_weight': np.float64(1.278167119892791), 'n_estimators': 300, 'max_depth': 7, 'learning_rate': 0.01, 'colsample_bytree': 1.0}",XGBoost_best.pkl
+Logistic_Regression,0.6581989447636987,0.6079869600651997,0.7310144027210239,"{'clf__solver': 'liblinear', 'clf__penalty': 'l2', 'clf__C': 100}",Logistic_Regression_best.pkl
+HistGradientBoosting,0.6554768348833584,0.5745043980569778,0.7359085219434935,"{'max_leaf_nodes': 15, 'max_iter': 100, 'max_depth': 5, 'learning_rate': 0.1, 'l2_regularization': 0}",HistGradientBoosting_best.pkl
