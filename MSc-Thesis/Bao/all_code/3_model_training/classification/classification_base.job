@@ -4,8 +4,8 @@
 #SBATCH --error=logs/error_%j.err
 #SBATCH --partition=gpu_a100
 #SBATCH --gres=gpu:1
-#SBATCH --time=04:00:00
-#SBATCH --mem=64G
+#SBATCH --time=03:00:00
+#SBATCH --mem=120G
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=jialong.bao@student.uva.nl
 
