@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=NoShap_Param_2023
+#SBATCH --job-name=test_default_ShapSeperate
 #SBATCH --output=logs/output_%j.log
 #SBATCH --error=logs/error_%j.err
 #SBATCH --partition=gpu_a100
 #SBATCH --gres=gpu:1
 #SBATCH --time=03:00:00
-#SBATCH --mem=120G
+#SBATCH --mem=64G
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=jialong.bao@student.uva.nl
 
