@@ -1,0 +1,4 @@
+Model,Balanced Accuracy,F1 Score,AUC-ROC,Saved File
+HistGradientBoosting,0.7222613208048335,0.7361055523165729,0.8043112337752983,test_default_NoShap_2023_HistGradientBoosting_best.pkl
+XGBoost,0.7208170305746764,0.7358859947500889,0.8028885250239398,test_default_NoShap_2023_XGBoost_best.pkl
+Logistic_Regression,0.6904993758348572,0.7105051538551368,0.7661080696269456,test_default_NoShap_2023_Logistic_Regression_best.pkl

@@ -1,4 +1,0 @@
-Model,Balanced Accuracy,F1 Score,AUC-ROC,Best Params,Saved File
-HistGradientBoosting,0.6704550594687013,0.6177935943060499,0.7351471634361777,"{'max_leaf_nodes': 64, 'max_iter': 200, 'max_depth': None, 'learning_rate': 0.01, 'l2_regularization': 10}",HistGradientBoosting_best.pkl
-Logistic_Regression,0.6581989447636987,0.6079869600651997,0.7310136705281974,"{'clf__solver': 'liblinear', 'clf__penalty': 'l2', 'clf__C': 100}",Logistic_Regression_best.pkl
-XGBoost,0.6524115096156443,0.5668662674650699,0.7278164895356629,"{'subsample': 0.8, 'scale_pos_weight': np.float64(1.278167119892791), 'n_estimators': 300, 'max_depth': 7, 'learning_rate': 0.01, 'colsample_bytree': 1.0}",XGBoost_best.pkl
