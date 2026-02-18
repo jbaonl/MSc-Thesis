@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=full_HPARA_NoShap
+#SBATCH --job-name=test_DEF_FEATS_NoShap
 #SBATCH --output=logs/output_%j.log
 #SBATCH --error=logs/error_%j.err
 #SBATCH --partition=gpu_a100
-#SBATCH --gres=gpu:1
-#SBATCH --time=03:00:00
+#SBATCH --gpus-per-node=1
+#SBATCH --time=01:30:00
 #SBATCH --mem=120G
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=jialong.bao@student.uva.nl
