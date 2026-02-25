@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=test_DEF_FEATS_NoShap
+#SBATCH --job-name=Monthly_SHAP
 #SBATCH --output=logs/output_%j.log
 #SBATCH --error=logs/error_%j.err
 #SBATCH --partition=gpu_a100
 #SBATCH --gpus-per-node=1
-#SBATCH --time=06:00:00
+#SBATCH --time=04:00:00
 #SBATCH --mem=120G
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=jialong.bao@student.uva.nl
