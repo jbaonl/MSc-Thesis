@@ -35,6 +35,7 @@ dependencies:
   - pip:
     # - pyarrow
     - imbalanced-learn
+    - lightgbm
   # - pip:
   #   - darts==0.39.0
   
