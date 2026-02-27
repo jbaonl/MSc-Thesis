@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=Monthly_SHAP
+#SBATCH --job-name=BASE_FULL_results
 #SBATCH --output=logs/output_%j.log
 #SBATCH --error=logs/error_%j.err
 #SBATCH --partition=gpu_a100
-#SBATCH --gpus-per-node=1
-#SBATCH --time=04:00:00
+#SBATCH --gpus-per-node=2
+#SBATCH --time=00:30:00
 #SBATCH --mem=120G
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=jialong.bao@student.uva.nl
