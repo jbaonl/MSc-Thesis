@@ -7,7 +7,7 @@
 #SBATCH --time=04:00:00
 #SBATCH --mem=64G
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=jialong.bao@student.uva.nl
+#SBATCH --mail-user=yourmail@example.com
 
 module purge
 module load 2025
