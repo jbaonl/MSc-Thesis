@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH --job-name=reqs_extraction
+#SBATCH --output=logs/output_%j.log
+#SBATCH --error=logs/error_%j.err
+#SBATCH --partition=gpu_a100
+#SBATCH --gpus-per-node=1
+#SBATCH --time=00:10:00
+#SBATCH --mem=16G
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=jialong.bao@student.uva.nl
+
+module purge
+module load 2025
+module load Anaconda3/2025.06-1
+
+# 2. Activate conda environment 
+source activate my_research_env
+
+jupyter nbconvert --output-dir="./reqs" --to script my getreqs.ipynb
+cd reqs
+pipreqs 
+
+# 1. Create a temporary isolation folder
+mkdir -p ./reqs
+
+# 2. Convert strictly the getreqs.ipynb notebook into the folder
+jupyter nbconvert \
+  --to script \
+  --execute $HOME/NS_Thesis/all_code/3_model_training/classification/getreqs.ipynb \
+  --ExecutePreprocessor.timeout=-1 \
+  --output $HOME/NS_Thesis/reqs/getreqs.py
+
+# 3. Run pipreqs on the isolated folder (--force overwrites if it already exists)
+pipreqs $HOME/NS_Thesis/reqs --force
+
+# 4. Move the output file to your current directory and delete the temp folder
+mv $HOME/NS_Thesis/reqs/requirements.txt $HOME/NS_Thesis/requirements.txt

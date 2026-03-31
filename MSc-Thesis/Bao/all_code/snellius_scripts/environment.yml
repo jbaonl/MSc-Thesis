@@ -15,10 +15,13 @@ dependencies:
   # - python=3.10
 
   # Core packages
-  - pandas
-  - duckdb 
-  - numpy
-  - scikit-learn
+  - pandas=3.0.2
+  - duckdb=1.5.1
+  - numpy=2.4.4
+  - scikit-learn=1.8.0
+  - matplotlib=3.10.8
+  - seaborn=0.13.2
+  - xgboost=3.2.0
 
   # PyTorch + CUDA (H100)
   - pytorch=2.2.*
@@ -34,9 +37,10 @@ dependencies:
   - pip
   - pip:
     # - pyarrow
-    - imbalanced-learn
-    - lightgbm
+    - imbalanced-learn==0.14.1
+    - lightgbm==4.6.0
     - shap==0.50.0
+    - pipreqsnb
   # - pip:
   #   - darts==0.39.0
   

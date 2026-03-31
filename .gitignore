@@ -1,7 +1,5 @@
 .venv/
 
-MSc-Thesis/Bao/downloads/
-
 MSc-Thesis/Bao/.ipynb_checkpoints/
 
 *.zip
@@ -24,3 +22,13 @@ MSc-Thesis/previous-work-merel
 *.duckdb
 
 *.wal
+
+*.tmp
+
+*.duckdb.tmp
+
+MSc-Thesis/Bao/downloads/**
+
+!MSc-Thesis/Bao/downloads/**/
+
+!MSc-Thesis/Bao/downloads/**/.gitkeep
