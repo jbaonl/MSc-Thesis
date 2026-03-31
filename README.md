@@ -6,8 +6,8 @@ Please refer to [MSc-Thesis/Bao](MSc-Thesis/Bao) for the main thesis repo.
 
 Setting up:
 NOTES: 
-- an open-meteo API key is preferred to run the download_data.ipynb notebook which can be acquired by [mailing the open-meteo repo owners](https://github.com/open-meteo/open-meteo?tab=readme-ov-file#support).
+- an open-meteo API key is preferred to run the download_data.ipynb notebook which can be acquired by [mailing the open-meteo repo owners](https://github.com/open-meteo/open-meteo?tab=readme-ov-file#support), or utilizing their publicly available API (rate limited). 
 - file may need to be adjusted, please change the paths accordingly on your machine.
 
 Step 1. Run download_data.ipynb notebook once to download the corresponding datasets
-Step 2. ...
+Step 2. Run 21_EDA.ipynb, 22_main_dataset_creation.ipynb, classification_base.ipynb, classification_base_HPARAM.ipynb, classification_new.ipynb
