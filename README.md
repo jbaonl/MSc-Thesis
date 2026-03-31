@@ -19,4 +19,3 @@ Step 2. Run snellius_scripts\IntellEnv.job to setup environment.yml in Snellius
 Step 3. Run 21_EDA.ipynb, 22_main_dataset_creation.ipynb (aggregate_monthly.job) , classification_base.ipynb (classification_base.job), classification_base_HPARAM.ipynb (classification_HPARAM.job), classification_new_NCW.ipynb (classification_new_NCW.job)
 
 Note: submit the job files to the snellius cluster to run the respective jupyter notebooks
-
