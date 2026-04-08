@@ -32,3 +32,5 @@ MSc-Thesis/Bao/downloads/**
 !MSc-Thesis/Bao/downloads/**/
 
 !MSc-Thesis/Bao/downloads/**/.gitkeep
+
+!MSc-Thesis/Bao/downloads/data/filtered/final_aggregated/
