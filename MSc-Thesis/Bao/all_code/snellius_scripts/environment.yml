@@ -36,7 +36,7 @@ dependencies:
 
   - pip
   - pip:
-    # - pyarrow
+    - pyarrow==23.0.1
     - imbalanced-learn==0.14.1
     - lightgbm==4.6.0
     - shap==0.50.0
