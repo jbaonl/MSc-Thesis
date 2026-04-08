@@ -41,6 +41,7 @@ dependencies:
     - lightgbm==4.6.0
     - shap==0.50.0
     - pipreqsnb
+    - statsmodels==0.14.6
   # - pip:
   #   - darts==0.39.0
   
