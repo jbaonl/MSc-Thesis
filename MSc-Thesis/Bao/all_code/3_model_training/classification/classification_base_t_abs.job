@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=BASE_FULL_results
+#SBATCH --job-name=BASE_ABS_results
 #SBATCH --output=logs/output_%j.log
 #SBATCH --error=logs/error_%j.err
 #SBATCH --partition=gpu_a100
