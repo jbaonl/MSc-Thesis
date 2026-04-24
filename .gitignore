@@ -15,6 +15,8 @@ MSc-Thesis/Bao/.env
 MSc-Thesis/Bao/ns_data.duckdb
 MSc-Thesis/Bao/ns_data.duckdb.wal
 
+MSc-Thesis/Bao/all_code/**/FUTURE_WORK*
+
 MSc-Thesis/previous-work-brent
 MSc-Thesis/previous-work-jonathan
 MSc-Thesis/previous-work-merel
